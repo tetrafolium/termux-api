@@ -2,55 +2,56 @@ inspecode:
 
   astyle:
     auto-fix: true
-    thresholds: { num-issues: 999 }
+    thresholds: { num-issues: 26 }
 
   checkstyle:
+    #config-file: .rocro/checkstyle/checkstyle.xml # (auto-detected)
     auto-fix: true
-    thresholds: { num-issues: 999 }
+    thresholds: { num-issues: 695 }
 
   clang-format:
     auto-fix: true
-    thresholds: { num-issues: 999 }
+    thresholds: { num-issues: 41 }
 
   cpd:
-    thresholds: { num-issues: 999 }
+    thresholds: { num-issues: 0 }
 
   #### not supported yet ??
   #fortify:
   #  thresholds: { num-issues: 999 }
 
   fossology:
-    thresholds: { num-issues: 999 }
+    thresholds: { num-issues: 3 }
 
   grep:
-    thresholds: { num-issues: 999 }
+    thresholds: { num-issues: 0 }
 
   infer:
-    thresholds: { num-issues: 999 }
+    thresholds: { num-issues: 8 }
 
   jscpd:
-    thresholds: { num-issues: 999 }
+    thresholds: { num-issues: 5 }
 
   misspell:
     auto-fix: true
-    thresholds: { num-issues: 999 }
+    thresholds: { num-issues: 0 }
 
   pmd:
     auto-fix: true
-    thresholds: { num-issues: 999 }
+    thresholds: { num-issues: 1 }
 
   spotbugs:
     options:
       -targets: app
-    thresholds: { num-issues: 999 }
+    thresholds: { num-issues: 263 }
 
   uncrustify:
     auto-fix: true
-    thresholds: { num-issues: 999 }
+    thresholds: { num-issues: 41 }
 
   #### not supported yet ??
   #understand:
   #  thresholds: { num-issues: 999 }
 
   unused:
-    thresholds: { num-issues: 999 }
+    thresholds: { num-issues: 13 }
