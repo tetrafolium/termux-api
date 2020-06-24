@@ -289,7 +289,7 @@ public class NotificationAPI {
         PendingIntent replyPendingIntent =
             PendingIntent.getBroadcast(context,
                                        buttonNum,
-                                       getMessageReplyIntent((Intent)intent.clone(), buttonText, buttonAction, notificationId),
+                                       getMessageReplyIntent((Intent) intent.clone(), buttonText, buttonAction, notificationId),
                                        PendingIntent.FLAG_UPDATE_CURRENT);
 
         // Create the reply action and add the remote input.

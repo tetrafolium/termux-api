@@ -93,7 +93,7 @@ public class DialogActivity extends AppCompatActivity {
      * Extract value extras from intent into String array
      */
     static String[] getInputValues(Intent intent) {
-        String[] items = new String[] { };
+        String[] items = new String[] {};
 
         if (intent != null && intent.hasExtra("input_values")) {
             String[] temp = intent.getStringExtra("input_values").split("(?<!\\\\),");
@@ -120,7 +120,7 @@ public class DialogActivity extends AppCompatActivity {
 
                 out.name("code").value(result.code);
                 out.name("text").value(result.text);
-                if(result.index > -1) {
+                if (result.index > -1) {
                     out.name("index").value(result.index);
                 }
                 if (result.values.size() > 0) {

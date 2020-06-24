@@ -26,7 +26,7 @@ public class VolumeAPI {
 
 
     static void onReceive(final TermuxApiReceiver receiver, final Context context, final Intent intent) {
-        final AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+        final AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         String action = intent.getAction();
 
         if ("set-volume".equals(action)) {

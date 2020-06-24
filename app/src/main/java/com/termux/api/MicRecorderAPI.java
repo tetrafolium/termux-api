@@ -263,10 +263,10 @@ public class MicRecorderAPI {
                             isRecording = true;
                             result.message = String.format("Recording started: %s \nMax Duration: %s",
                                                            file.getAbsolutePath(),
-                                                           duration <= 0 ?
-                                                           "unlimited" :
-                                                           MediaPlayerAPI.getTimeString(duration /
-                                                                   1000));
+                                                           duration <= 0
+                                                           ? "unlimited"
+                                                           : MediaPlayerAPI.getTimeString(duration
+                                                                   / 1000));
 
                         } catch (IllegalStateException | IOException e) {
                             TermuxApiLogger.error("MediaRecorder error", e);

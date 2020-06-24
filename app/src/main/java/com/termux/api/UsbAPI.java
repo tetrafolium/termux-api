@@ -141,7 +141,7 @@ public class UsbAPI {
 
     private static boolean getPermission(final @NonNull UsbDevice device, final Context context, final Intent intent) {
         boolean request = intent.getBooleanExtra("request", false);
-        if(request) {
+        if (request) {
             return requestPermission(device, context);
         } else {
             return hasPermission(device, context);
