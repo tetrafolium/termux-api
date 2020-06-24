@@ -154,32 +154,32 @@ public class DialogActivity extends AppCompatActivity {
         public static InputMethod get(final String type, final AppCompatActivity activity) {
 
             switch (type == null ? "" : type) {
-                case "confirm":
-                    return new ConfirmInputMethod(activity);
-                case "checkbox":
-                    return new CheckBoxInputMethod(activity);
-                case "counter":
-                    return new CounterInputMethod(activity);
-                case "date":
-                    return new DateInputMethod(activity);
-                case "radio":
-                    return new RadioInputMethod(activity);
-                case "sheet":
-                    return new BottomSheetInputMethod();
-                case "speech":
-                    return new SpeechInputMethod(activity);
-                case "spinner":
-                    return new SpinnerInputMethod(activity);
-                case "text":
-                    return new TextInputMethod(activity);
-                case "time":
-                    return new TimeInputMethod(activity);
-                default:
-                    return (activity1, resultListener) -> {
-                        InputResult result = new InputResult();
-                        result.error = "Unknown Input Method: " + type;
-                        resultListener.onResult(result);
-                    };
+            case "confirm":
+                return new ConfirmInputMethod(activity);
+            case "checkbox":
+                return new CheckBoxInputMethod(activity);
+            case "counter":
+                return new CounterInputMethod(activity);
+            case "date":
+                return new DateInputMethod(activity);
+            case "radio":
+                return new RadioInputMethod(activity);
+            case "sheet":
+                return new BottomSheetInputMethod();
+            case "speech":
+                return new SpeechInputMethod(activity);
+            case "spinner":
+                return new SpinnerInputMethod(activity);
+            case "text":
+                return new TextInputMethod(activity);
+            case "time":
+                return new TimeInputMethod(activity);
+            default:
+                return (activity1, resultListener) -> {
+                    InputResult result = new InputResult();
+                    result.error = "Unknown Input Method: " + type;
+                    resultListener.onResult(result);
+                };
             }
         }
     }
@@ -768,9 +768,9 @@ public class DialogActivity extends AppCompatActivity {
             });
 
             Dialog dialog = getDialogBuilder(activity, clickListener)
-                    .setPositiveButton(null, null)
-                    .setOnDismissListener(null)
-                    .create();
+                            .setPositiveButton(null, null)
+                            .setOnDismissListener(null)
+                            .create();
 
             dialog.setCanceledOnTouchOutside(false);
             dialog.show();
@@ -812,27 +812,27 @@ public class DialogActivity extends AppCompatActivity {
                     String errorDescription;
 
                     switch (error) {
-                        case SpeechRecognizer.ERROR_AUDIO:
-                            errorDescription = "ERROR_AUDIO";
-                            break;
-                        case SpeechRecognizer.ERROR_CLIENT:
-                            errorDescription = "ERROR_CLIENT";
-                            break;
-                        case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
-                            errorDescription = "ERROR_INSUFFICIENT_PERMISSIONS";
-                            break;
-                        case SpeechRecognizer.ERROR_NETWORK:
-                            errorDescription = "ERROR_NETWORK";
-                            break;
-                        case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
-                            errorDescription = "ERROR_NETWORK_TIMEOUT";
-                            break;
-                        case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
-                            errorDescription = "ERROR_SPEECH_TIMEOUT";
-                            break;
-                        default:
-                            errorDescription = "ERROR_UNKNOWN";
-                            break;
+                    case SpeechRecognizer.ERROR_AUDIO:
+                        errorDescription = "ERROR_AUDIO";
+                        break;
+                    case SpeechRecognizer.ERROR_CLIENT:
+                        errorDescription = "ERROR_CLIENT";
+                        break;
+                    case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
+                        errorDescription = "ERROR_INSUFFICIENT_PERMISSIONS";
+                        break;
+                    case SpeechRecognizer.ERROR_NETWORK:
+                        errorDescription = "ERROR_NETWORK";
+                        break;
+                    case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
+                        errorDescription = "ERROR_NETWORK_TIMEOUT";
+                        break;
+                    case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
+                        errorDescription = "ERROR_SPEECH_TIMEOUT";
+                        break;
+                    default:
+                        errorDescription = "ERROR_UNKNOWN";
+                        break;
                     }
                     inputResult.error = errorDescription;
                     listener.onResult(inputResult);
@@ -966,11 +966,11 @@ public class DialogActivity extends AppCompatActivity {
             final View layoutView = getLayoutView(activity, widgetView);
 
             return new AlertDialog.Builder(activity)
-                    .setTitle(intent.hasExtra("input_title") ? intent.getStringExtra("input_title") : "")
-                    .setNegativeButton(getNegativeButtonText(), clickListener)
-                    .setPositiveButton(getPositiveButtonText(), clickListener)
-                    .setOnDismissListener(getDismissListener())
-                    .setView(layoutView);
+                   .setTitle(intent.hasExtra("input_title") ? intent.getStringExtra("input_title") : "")
+                   .setNegativeButton(getNegativeButtonText(), clickListener)
+                   .setPositiveButton(getPositiveButtonText(), clickListener)
+                   .setOnDismissListener(getDismissListener())
+                   .setView(layoutView);
 
         }
 

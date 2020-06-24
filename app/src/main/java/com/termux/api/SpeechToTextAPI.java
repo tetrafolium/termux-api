@@ -79,20 +79,20 @@ public class SpeechToTextAPI {
                 public void onError(int error) {
                     String description;
                     switch (error) {
-                        case SpeechRecognizer.ERROR_CLIENT:
-                            description = "ERROR_CLIENT";
-                            break;
-                        case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
-                            description = "ERROR_SPEECH_TIMEOUT";
-                            break;
-                        case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
-                            description = "ERROR_RECOGNIZER_BUSY";
-                            break;
-                        case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
-                            description = "ERROR_INSUFFICIENT_PERMISSIONS";
-                            break;
-                        default:
-                            description = Integer.toString(error);
+                    case SpeechRecognizer.ERROR_CLIENT:
+                        description = "ERROR_CLIENT";
+                        break;
+                    case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
+                        description = "ERROR_SPEECH_TIMEOUT";
+                        break;
+                    case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
+                        description = "ERROR_RECOGNIZER_BUSY";
+                        break;
+                    case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
+                        description = "ERROR_INSUFFICIENT_PERMISSIONS";
+                        break;
+                    default:
+                        description = Integer.toString(error);
                     }
                     TermuxApiLogger.error("RecognitionListener#onError(" + description + ")");
                     queueu.add(STOP_ELEMENT);
@@ -124,14 +124,14 @@ public class SpeechToTextAPI {
 // button
 // Install Button click handler
                 new AlertDialog.Builder(context).setMessage("For recognition it’s necessary to install \"Google Voice Search\"")
-                        .setTitle("Install Voice Search from Google Play?").setPositiveButton("Install", (dialog, which) -> {
-                            Intent installIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.google.android.voicesearch"));
-                            // setting flags to avoid going in application history (Activity call
-                            // stack)
-                            installIntent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
-                            context.startActivity(installIntent);
-                        }).setNegativeButton("Cancel", null) // cancel button
-                        .create().show();
+                .setTitle("Install Voice Search from Google Play?").setPositiveButton("Install", (dialog, which) -> {
+                    Intent installIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.google.android.voicesearch"));
+                    // setting flags to avoid going in application history (Activity call
+                    // stack)
+                    installIntent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+                    context.startActivity(installIntent);
+                }).setNegativeButton("Cancel", null) // cancel button
+                .create().show();
             }
 
             Intent recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -190,13 +190,13 @@ public class SpeechToTextAPI {
 // button
 // Install Button click handler
             new AlertDialog.Builder(context).setMessage("For recognition it’s necessary to install \"Google Voice Search\"")
-                    .setTitle("Install Voice Search from Google Play?").setPositiveButton("Install", (dialog, which) -> {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.google.android.voicesearch"));
-                        // setting flags to avoid going in application history (Activity call stack)
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
-                        context.startActivity(intent);
-                    }).setNegativeButton("Cancel", null) // cancel button
-                    .create().show();
+            .setTitle("Install Voice Search from Google Play?").setPositiveButton("Install", (dialog, which) -> {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.google.android.voicesearch"));
+                // setting flags to avoid going in application history (Activity call stack)
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+                context.startActivity(intent);
+            }).setNegativeButton("Cancel", null) // cancel button
+            .create().show();
         }
     }
 

@@ -64,10 +64,14 @@ public class ToastAPI {
         String extraGravity = intent.getStringExtra("gravity");
 
         switch (extraGravity == null ? "" : extraGravity) {
-            case "top": return Gravity.TOP;
-            case "middle": return Gravity.CENTER;
-            case "bottom": return Gravity.BOTTOM;
-            default: return Gravity.CENTER;
+        case "top":
+            return Gravity.TOP;
+        case "middle":
+            return Gravity.CENTER;
+        case "bottom":
+            return Gravity.BOTTOM;
+        default:
+            return Gravity.CENTER;
         }
     }
 

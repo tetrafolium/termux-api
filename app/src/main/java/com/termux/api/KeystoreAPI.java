@@ -48,21 +48,21 @@ class KeystoreAPI {
         }
 
         switch (intent.getStringExtra("command")) {
-            case "list":
-                listKeys(apiReceiver, intent);
-                break;
-            case "generate":
-                generateKey(apiReceiver, intent);
-                break;
-            case "delete":
-                deleteKey(apiReceiver, intent);
-                break;
-            case "sign":
-                signData(apiReceiver, intent);
-                break;
-            case "verify":
-                verifyData(apiReceiver, intent);
-                break;
+        case "list":
+            listKeys(apiReceiver, intent);
+            break;
+        case "generate":
+            generateKey(apiReceiver, intent);
+            break;
+        case "delete":
+            deleteKey(apiReceiver, intent);
+            break;
+        case "sign":
+            signData(apiReceiver, intent);
+            break;
+        case "verify":
+            verifyData(apiReceiver, intent);
+            break;
         }
     }
 
@@ -106,7 +106,7 @@ class KeystoreAPI {
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     private static void printPrivateKey(JsonWriter out, PrivateKeyEntry entry, boolean detailed)
-            throws GeneralSecurityException, IOException {
+    throws GeneralSecurityException, IOException {
         PrivateKey privateKey = entry.getPrivateKey();
         String algorithm = privateKey.getAlgorithm();
         KeyInfo keyInfo = KeyFactory.getInstance(algorithm).getKeySpec(privateKey, KeyInfo.class);
@@ -204,13 +204,13 @@ class KeystoreAPI {
             int userValidity = intent.getIntExtra("validity", 0);
 
             KeyGenParameterSpec.Builder builder =
-                    new KeyGenParameterSpec.Builder(alias, purposes);
+            new KeyGenParameterSpec.Builder(alias, purposes);
 
             builder.setDigests(digests);
             if (algorithm.equals(KeyProperties.KEY_ALGORITHM_RSA)) {
                 // only the exponent 65537 is supported for now
                 builder.setAlgorithmParameterSpec(
-                        new RSAKeyGenParameterSpec(size, RSAKeyGenParameterSpec.F4));
+                    new RSAKeyGenParameterSpec(size, RSAKeyGenParameterSpec.F4));
                 builder.setSignaturePaddings(KeyProperties.SIGNATURE_PADDING_RSA_PKCS1);
             }
 

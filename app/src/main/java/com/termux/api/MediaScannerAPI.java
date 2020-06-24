@@ -32,14 +32,14 @@ public class MediaScannerAPI {
 
     private static void scanFiles(PrintWriter out, Context context, String[] filePaths, Integer[] totalScanned, final Boolean verbose) {
         MediaScannerConnection.scanFile(
-                context.getApplicationContext(),
-                filePaths,
-                null,
-                (path, uri) -> TermuxApiLogger.info("'" + path + "'" + (uri != null ? " -> '" + uri + "'" : "")));
+            context.getApplicationContext(),
+            filePaths,
+            null,
+            (path, uri) -> TermuxApiLogger.info("'" + path + "'" + (uri != null ? " -> '" + uri + "'" : "")));
 
         if (verbose) for (String path : filePaths) {
                 out.println(path);
-        }
+            }
 
         totalScanned[0] += filePaths.length;
     }

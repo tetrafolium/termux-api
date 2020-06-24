@@ -75,25 +75,25 @@ public class MicRecorderAPI {
 
         protected static RecorderCommandHandler getRecorderCommandHandler(final String command) {
             switch (command == null ? "" : command) {
-                case "info":
-                    return infoHandler;
-                case "record":
-                    return recordHandler;
-                case "quit":
-                    return quitHandler;
-                default:
-                    return (context, intent) -> {
-                        RecorderCommandResult result = new RecorderCommandResult();
-                        result.error = "Unknown command: " + command;
-                        if (!isRecording)
-                            context.stopService(intent);
-                        return result;
-                    };
+            case "info":
+                return infoHandler;
+            case "record":
+                return recordHandler;
+            case "quit":
+                return quitHandler;
+            default:
+                return (context, intent) -> {
+                    RecorderCommandResult result = new RecorderCommandResult();
+                    result.error = "Unknown command: " + command;
+                    if (!isRecording)
+                        context.stopService(intent);
+                    return result;
+                };
             }
         }
 
         protected static void postRecordCommandResult(final Context context, final Intent intent,
-                                                      final RecorderCommandResult result) {
+                final RecorderCommandResult result) {
 
             ResultReturner.returnData(context, intent, out -> {
                 out.append(result.message).append("\n");
@@ -146,9 +146,9 @@ public class MicRecorderAPI {
         @Override
         public void onInfo(MediaRecorder mr, int what, int extra) {
             switch (what) {
-                case MEDIA_RECORDER_INFO_MAX_FILESIZE_REACHED: // intentional fallthrough
-                case MEDIA_RECORDER_INFO_MAX_DURATION_REACHED:
-                    this.stopSelf();
+            case MEDIA_RECORDER_INFO_MAX_FILESIZE_REACHED: // intentional fallthrough
+            case MEDIA_RECORDER_INFO_MAX_DURATION_REACHED:
+                this.stopSelf();
             }
             TermuxApiLogger.info("MicRecorderService onInfo() " + what);
         }
@@ -266,7 +266,7 @@ public class MicRecorderAPI {
                                                            duration <= 0 ?
                                                            "unlimited" :
                                                            MediaPlayerAPI.getTimeString(duration /
-                                                                                        1000));
+                                                                   1000));
 
                         } catch (IllegalStateException | IOException e) {
                             TermuxApiLogger.error("MediaRecorder error", e);

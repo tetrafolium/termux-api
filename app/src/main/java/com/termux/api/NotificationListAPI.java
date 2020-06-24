@@ -63,14 +63,14 @@ public class NotificationListAPI {
                 packageName = n.getPackageName();
             }
             out.beginObject()
-                    .name("id").value(id)
-                    .name("tag").value(tag)
-                    .name("key").value(key)
-                    .name("group").value(group)
-                    .name("packageName").value(packageName)
-                    .name("title").value(title)
-                    .name("content").value(text)
-                    .name("when").value(when);
+            .name("id").value(id)
+            .name("tag").value(tag)
+            .name("key").value(key)
+            .name("group").value(group)
+            .name("packageName").value(packageName)
+            .name("title").value(title)
+            .name("content").value(text)
+            .name("when").value(when);
             if (lines != null) {
                 out.name("lines").beginArray();
                 for (CharSequence line : lines) {
@@ -81,5 +81,5 @@ public class NotificationListAPI {
             out.endObject();
         }
         out.endArray();
-        }
     }
+}

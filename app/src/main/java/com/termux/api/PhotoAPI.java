@@ -130,7 +130,7 @@ public class PhotoAPI {
                     }
                 }
             }
-        }.start(), null);
+        } .start(), null);
         final Surface imageReaderSurface = mImageReader.getSurface();
         outputSurfaces.add(imageReaderSurface);
 
@@ -190,24 +190,24 @@ public class PhotoAPI {
 
         int deviceOrientation;
         final int deviceRotation =
-                ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
+            ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
         switch (deviceRotation) {
-            case Surface.ROTATION_0:
-                deviceOrientation = 0;
-                break;
-            case Surface.ROTATION_90:
-                deviceOrientation = 90;
-                break;
-            case Surface.ROTATION_180:
-                deviceOrientation = 180;
-                break;
-            case Surface.ROTATION_270:
-                deviceOrientation = 270;
-                break;
-            default:
-                TermuxApiLogger.info(
-                        String.format("Default display has unknown rotation %d. Assuming 0 degrees.", deviceRotation));
-                deviceOrientation = 0;
+        case Surface.ROTATION_0:
+            deviceOrientation = 0;
+            break;
+        case Surface.ROTATION_90:
+            deviceOrientation = 90;
+            break;
+        case Surface.ROTATION_180:
+            deviceOrientation = 180;
+            break;
+        case Surface.ROTATION_270:
+            deviceOrientation = 270;
+            break;
+        default:
+            TermuxApiLogger.info(
+                String.format("Default display has unknown rotation %d. Assuming 0 degrees.", deviceRotation));
+            deviceOrientation = 0;
         }
         TermuxApiLogger.info(String.format("Device orientation: %d degrees", deviceOrientation));
 

@@ -78,21 +78,21 @@ public class WifiAPI {
                             int channelWidth = scan.channelWidth;
                             String channelWidthMhz = "???";
                             switch (channelWidth) {
-                                case ScanResult.CHANNEL_WIDTH_20MHZ:
-                                    channelWidthMhz = "20";
-                                    break;
-                                case ScanResult.CHANNEL_WIDTH_40MHZ:
-                                    channelWidthMhz = "40";
-                                    break;
-                                case ScanResult.CHANNEL_WIDTH_80MHZ:
-                                    channelWidthMhz = "80";
-                                    break;
-                                case ScanResult.CHANNEL_WIDTH_80MHZ_PLUS_MHZ:
-                                    channelWidthMhz = "80+80";
-                                    break;
-                                case ScanResult.CHANNEL_WIDTH_160MHZ:
-                                    channelWidthMhz = "160";
-                                    break;
+                            case ScanResult.CHANNEL_WIDTH_20MHZ:
+                                channelWidthMhz = "20";
+                                break;
+                            case ScanResult.CHANNEL_WIDTH_40MHZ:
+                                channelWidthMhz = "40";
+                                break;
+                            case ScanResult.CHANNEL_WIDTH_80MHZ:
+                                channelWidthMhz = "80";
+                                break;
+                            case ScanResult.CHANNEL_WIDTH_80MHZ_PLUS_MHZ:
+                                channelWidthMhz = "80+80";
+                                break;
+                            case ScanResult.CHANNEL_WIDTH_160MHZ:
+                                channelWidthMhz = "160";
+                                break;
                             }
                             out.name("channel_bandwidth_mhz").value(channelWidthMhz);
                             if (channelWidth != ScanResult.CHANNEL_WIDTH_20MHZ) {

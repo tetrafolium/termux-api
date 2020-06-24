@@ -51,7 +51,7 @@ public class JobSchedulerAPI {
         }
 
         return String.format(Locale.ENGLISH, "Job %d: %s\t%s", jobInfo.getId(), path,
-                TextUtils.join(" ", description));
+                             TextUtils.join(" ", description));
     }
 
     static void onReceive(TermuxApiReceiver apiReceiver, Context context, Intent intent) {
@@ -76,22 +76,22 @@ public class JobSchedulerAPI {
         int networkTypeCode;
         if (networkType != null) {
             switch (networkType) {
-                case "any":
-                    networkTypeCode = JobInfo.NETWORK_TYPE_ANY;
-                    break;
-                case "unmetered":
-                    networkTypeCode = JobInfo.NETWORK_TYPE_UNMETERED;
-                    break;
-                case "cellular":
-                    networkTypeCode = JobInfo.NETWORK_TYPE_CELLULAR;
-                    break;
-                case "not_roaming":
-                    networkTypeCode = JobInfo.NETWORK_TYPE_NOT_ROAMING;
-                    break;
-                default:
-                case "none":
-                    networkTypeCode = JobInfo.NETWORK_TYPE_NONE;
-                    break;
+            case "any":
+                networkTypeCode = JobInfo.NETWORK_TYPE_ANY;
+                break;
+            case "unmetered":
+                networkTypeCode = JobInfo.NETWORK_TYPE_UNMETERED;
+                break;
+            case "cellular":
+                networkTypeCode = JobInfo.NETWORK_TYPE_CELLULAR;
+                break;
+            case "not_roaming":
+                networkTypeCode = JobInfo.NETWORK_TYPE_NOT_ROAMING;
+                break;
+            default:
+            case "none":
+                networkTypeCode = JobInfo.NETWORK_TYPE_NONE;
+                break;
             }
         } else { // networkType == null
             networkTypeCode = JobInfo.NETWORK_TYPE_ANY;
@@ -145,11 +145,11 @@ public class JobSchedulerAPI {
 
         ComponentName serviceComponent = new ComponentName(context, SchedulerJobService.class);
         JobInfo.Builder builder = new JobInfo.Builder(jobId, serviceComponent)
-                .setExtras(extras)
-                .setRequiredNetworkType(networkTypeCode)
-                .setRequiresCharging(charging)
-                .setPersisted(persisted)
-                .setRequiresDeviceIdle(idle);
+        .setExtras(extras)
+        .setRequiredNetworkType(networkTypeCode)
+        .setRequiresCharging(charging)
+        .setPersisted(persisted)
+        .setRequiresDeviceIdle(idle);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             builder = builder.setRequiresBatteryNotLow(batteryNotLow);

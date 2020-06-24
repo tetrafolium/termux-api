@@ -143,7 +143,7 @@ public class FingerprintAPI {
      * Activity that is necessary for authenticating w/ fingerprint sensor
      */
     @TargetApi(Build.VERSION_CODES.M)
-    public static class FingerprintActivity extends FragmentActivity{
+    public static class FingerprintActivity extends FragmentActivity {
 
         @Override
         public void onCreate(Bundle savedInstanceState) {

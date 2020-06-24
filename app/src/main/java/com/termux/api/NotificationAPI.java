@@ -67,18 +67,18 @@ public class NotificationAPI {
                     if (priorityExtra == null) priorityExtra = "default";
                     int importance;
                     switch (priorityExtra) {
-                        case "high":
-                        case "max":
-                            importance = NotificationManager.IMPORTANCE_HIGH;
-                            break;
-                        case "low":
-                            importance = NotificationManager.IMPORTANCE_LOW;
-                            break;
-                        case "min":
-                            importance = NotificationManager.IMPORTANCE_MIN;
-                            break;
-                        default:
-                            importance = NotificationManager.IMPORTANCE_DEFAULT;
+                    case "high":
+                    case "max":
+                        importance = NotificationManager.IMPORTANCE_HIGH;
+                        break;
+                    case "low":
+                        importance = NotificationManager.IMPORTANCE_LOW;
+                        break;
+                    case "min":
+                        importance = NotificationManager.IMPORTANCE_MIN;
+                        break;
+                    default:
+                        importance = NotificationManager.IMPORTANCE_DEFAULT;
                     }
                     NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
                             CHANNEL_TITLE, importance);
@@ -97,20 +97,20 @@ public class NotificationAPI {
         if (priorityExtra == null) priorityExtra = "default";
         int priority;
         switch (priorityExtra) {
-            case "high":
-                priority = Notification.PRIORITY_HIGH;
-                break;
-            case "low":
-                priority = Notification.PRIORITY_LOW;
-                break;
-            case "max":
-                priority = Notification.PRIORITY_MAX;
-                break;
-            case "min":
-                priority = Notification.PRIORITY_MIN;
-                break;
-            default:
-                priority = Notification.PRIORITY_DEFAULT;
+        case "high":
+            priority = Notification.PRIORITY_HIGH;
+            break;
+        case "low":
+            priority = Notification.PRIORITY_LOW;
+            break;
+        case "max":
+            priority = Notification.PRIORITY_MAX;
+            break;
+        case "min":
+            priority = Notification.PRIORITY_MIN;
+            break;
+        default:
+            priority = Notification.PRIORITY_DEFAULT;
         }
 
         String title = intent.getStringExtra("title");
@@ -177,8 +177,8 @@ public class NotificationAPI {
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
 
                 notification.setLargeIcon(myBitmap)
-                        .setStyle(new NotificationCompat.BigPictureStyle()
-                                .bigPicture(myBitmap));
+                .setStyle(new NotificationCompat.BigPictureStyle()
+                          .bigPicture(myBitmap));
             }
         }
 
@@ -205,7 +205,7 @@ public class NotificationAPI {
                 notification.addAction(new NotificationCompat.Action(android.R.drawable.ic_media_next, "next", nextIntent));
 
                 notification.setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
-                        .setShowActionsInCompactView(0, 1, 3));
+                                      .setShowActionsInCompactView(0, 1, 3));
             }
         }
 
@@ -216,7 +216,7 @@ public class NotificationAPI {
 
             if (vibratePattern == null) {
                 // Hack to make led work without vibrating.
-                vibratePattern = new long[]{0};
+                vibratePattern = new long[] {0};
             }
         }
 
@@ -243,11 +243,11 @@ public class NotificationAPI {
             if (buttonText != null && buttonAction != null) {
                 if (buttonAction.contains("$REPLY")) {
                     NotificationCompat.Action action = createReplyAction(context, intent,
-                            button,
-                            buttonText, buttonAction, notificationId);
+                                                       button,
+                                                       buttonText, buttonAction, notificationId);
                     notification.addAction(action);
                 } else {
-                PendingIntent pi = createAction(context, buttonAction);
+                    PendingIntent pi = createAction(context, buttonAction);
                     notification.addAction(new NotificationCompat.Action(android.R.drawable.ic_input_add, buttonText, pi));
                 }
             }
@@ -277,41 +277,41 @@ public class NotificationAPI {
     }
 
     static NotificationCompat.Action createReplyAction(final Context context, Intent intent,
-                                                       int buttonNum,
-                                                       String buttonText,
-                                                       String buttonAction, String notificationId) {
+            int buttonNum,
+            String buttonText,
+            String buttonAction, String notificationId) {
         String replyLabel = buttonText;
         RemoteInput remoteInput = new RemoteInput.Builder(KEY_TEXT_REPLY)
-                .setLabel(replyLabel)
-                .build();
+        .setLabel(replyLabel)
+        .build();
 
         // Build a PendingIntent for the reply action to trigger.
         PendingIntent replyPendingIntent =
-                PendingIntent.getBroadcast(context,
-                        buttonNum,
-                        getMessageReplyIntent((Intent)intent.clone(), buttonText, buttonAction, notificationId),
-                        PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent.getBroadcast(context,
+                                       buttonNum,
+                                       getMessageReplyIntent((Intent)intent.clone(), buttonText, buttonAction, notificationId),
+                                       PendingIntent.FLAG_UPDATE_CURRENT);
 
         // Create the reply action and add the remote input.
         NotificationCompat.Action action =
-                new NotificationCompat.Action.Builder(R.drawable.ic_event_note_black_24dp,
-                        buttonText,
-                        replyPendingIntent)
-                        .addRemoteInput(remoteInput)
-                        .build();
+            new NotificationCompat.Action.Builder(R.drawable.ic_event_note_black_24dp,
+                    buttonText,
+                    replyPendingIntent)
+        .addRemoteInput(remoteInput)
+        .build();
 
         return action;
     }
 
     private static Intent getMessageReplyIntent(Intent oldIntent,
-                                                String buttonText, String buttonAction,
-                                                String notificationId) {
+            String buttonText, String buttonAction,
+            String notificationId) {
         Intent intent = oldIntent.
-                setClassName("com.termux.api", "com.termux.api.TermuxApiReceiver").
-                putExtra("api_method", "NotificationReply").
-                putExtra("id", notificationId).
-                putExtra("action", buttonAction).
-                putExtra("replyKey", buttonText);
+                        setClassName("com.termux.api", "com.termux.api.TermuxApiReceiver").
+                        putExtra("api_method", "NotificationReply").
+                        putExtra("id", notificationId).
+                        putExtra("action", buttonAction).
+                        putExtra("replyKey", buttonText);
         return intent;
     }
 
@@ -329,12 +329,12 @@ public class NotificationAPI {
     }
 
     static void onReceiveReplyToNotification(TermuxApiReceiver termuxApiReceiver,
-                                                    Context context, Intent intent) {
+            Context context, Intent intent) {
         String replyKey = intent.getStringExtra("replyKey");
         CharSequence reply = getMessageText(intent);
 
         String action = intent.getStringExtra("action")
-                .replace("$REPLY", shellEscape(reply));
+                        .replace("$REPLY", shellEscape(reply));
         try {
             createAction(context, action).send();
         } catch (PendingIntent.CanceledException e) {
@@ -355,12 +355,12 @@ public class NotificationAPI {
         }
     }
 
-    static Intent createExecuteIntent(String action){
-        String[] arguments = new String[]{"-c", action};
+    static Intent createExecuteIntent(String action) {
+        String[] arguments = new String[] {"-c", action};
         Uri executeUri = new Uri.Builder().scheme("com.termux.file")
-                .path(BIN_SH)
-                .appendQueryParameter("arguments", Arrays.toString(arguments))
-                .build();
+        .path(BIN_SH)
+        .appendQueryParameter("arguments", Arrays.toString(arguments))
+        .build();
         Intent executeIntent = new Intent(ACTION_EXECUTE, executeUri);
         executeIntent.setClassName("com.termux", TERMUX_SERVICE);
         executeIntent.putExtra(EXTRA_EXECUTE_IN_BACKGROUND, true);
@@ -368,7 +368,7 @@ public class NotificationAPI {
         return executeIntent;
     }
 
-    static PendingIntent createAction(final Context context, String action){
+    static PendingIntent createAction(final Context context, String action) {
         Intent executeIntent = createExecuteIntent(action);
         return PendingIntent.getService(context, 0, executeIntent, 0);
     }

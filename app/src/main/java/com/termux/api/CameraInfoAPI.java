@@ -32,14 +32,14 @@ public class CameraInfoAPI {
                     out.name("facing");
                     int lensFacing = camera.get(CameraCharacteristics.LENS_FACING);
                     switch (lensFacing) {
-                        case CameraMetadata.LENS_FACING_FRONT:
-                            out.value("front");
-                            break;
-                        case CameraMetadata.LENS_FACING_BACK:
-                            out.value("back");
-                            break;
-                        default:
-                            out.value(lensFacing);
+                    case CameraMetadata.LENS_FACING_FRONT:
+                        out.value("front");
+                        break;
+                    case CameraMetadata.LENS_FACING_BACK:
+                        out.value("back");
+                        break;
+                    default:
+                        out.value(lensFacing);
                     }
 
                     StreamConfigurationMap map = camera.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
@@ -58,48 +58,48 @@ public class CameraInfoAPI {
                     int[] flashModeValues = camera.get(CameraCharacteristics.CONTROL_AE_AVAILABLE_MODES);
                     for (int flashMode : flashModeValues) {
                         switch (flashMode) {
-                            case CameraMetadata.CONTROL_AE_MODE_OFF:
-                                out.value("CONTROL_AE_MODE_OFF");
-                                break;
-                            case CameraMetadata.CONTROL_AE_MODE_ON:
-                                out.value("CONTROL_AE_MODE_ON");
-                                break;
-                            case CameraMetadata.CONTROL_AE_MODE_ON_ALWAYS_FLASH:
-                                out.value("CONTROL_AE_MODE_ON_ALWAYS_FLASH");
-                                break;
-                            case CameraMetadata.CONTROL_AE_MODE_ON_AUTO_FLASH:
-                                out.value("CONTROL_AE_MODE_ON_AUTO_FLASH");
-                                break;
-                            case CameraMetadata.CONTROL_AE_MODE_ON_AUTO_FLASH_REDEYE:
-                                out.value("CONTROL_AE_MODE_ON_AUTO_FLASH_REDEYE");
-                                break;
-                            default:
-                                out.value(flashMode);
+                        case CameraMetadata.CONTROL_AE_MODE_OFF:
+                            out.value("CONTROL_AE_MODE_OFF");
+                            break;
+                        case CameraMetadata.CONTROL_AE_MODE_ON:
+                            out.value("CONTROL_AE_MODE_ON");
+                            break;
+                        case CameraMetadata.CONTROL_AE_MODE_ON_ALWAYS_FLASH:
+                            out.value("CONTROL_AE_MODE_ON_ALWAYS_FLASH");
+                            break;
+                        case CameraMetadata.CONTROL_AE_MODE_ON_AUTO_FLASH:
+                            out.value("CONTROL_AE_MODE_ON_AUTO_FLASH");
+                            break;
+                        case CameraMetadata.CONTROL_AE_MODE_ON_AUTO_FLASH_REDEYE:
+                            out.value("CONTROL_AE_MODE_ON_AUTO_FLASH_REDEYE");
+                            break;
+                        default:
+                            out.value(flashMode);
                         }
                     }
                     out.endArray();
 
                     SizeF physicalSize = camera.get(CameraCharacteristics.SENSOR_INFO_PHYSICAL_SIZE);
                     out.name("physical_size").beginObject().name("width").value(physicalSize.getWidth()).name("height")
-                            .value(physicalSize.getHeight()).endObject();
+                    .value(physicalSize.getHeight()).endObject();
 
                     out.name("capabilities").beginArray();
                     for (int capability : camera.get(CameraCharacteristics.REQUEST_AVAILABLE_CAPABILITIES)) {
                         switch (capability) {
-                            case CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_MANUAL_SENSOR:
-                                out.value("manual_sensor");
-                                break;
-                            case CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_MANUAL_POST_PROCESSING:
-                                out.value("manual_post_processing");
-                                break;
-                            case CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_BACKWARD_COMPATIBLE:
-                                out.value("backward_compatible");
-                                break;
-                            case CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_RAW:
-                                out.value("raw");
-                                break;
-                            default:
-                                out.value(capability);
+                        case CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_MANUAL_SENSOR:
+                            out.value("manual_sensor");
+                            break;
+                        case CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_MANUAL_POST_PROCESSING:
+                            out.value("manual_post_processing");
+                            break;
+                        case CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_BACKWARD_COMPATIBLE:
+                            out.value("backward_compatible");
+                            break;
+                        case CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_RAW:
+                            out.value("raw");
+                            break;
+                        default:
+                            out.value(capability);
                         }
                     }
                     out.endArray();

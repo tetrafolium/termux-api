@@ -32,43 +32,43 @@ public class UsbAPI {
             ResultReturner.returnData(apiReceiver, intent, out -> out.append("Missing action\n"));
         } else {
             switch (action) {
-                case "list":
-                    ResultReturner.returnData(apiReceiver, intent, new ResultReturner.ResultJsonWriter() {
-                        @Override
-                        public void writeJson(JsonWriter out) throws Exception {
-                            listDevices(context, out);
-                        }
-                    });
-                    break;
-                case "permission":
-                    device = getDevice(apiReceiver, context, intent);
-                    if (device == null) return;
-                    ResultReturner.returnData(apiReceiver, intent, out -> {
-                        boolean result = getPermission(device, context, intent);
-                        out.append(result ? "yes\n" : "no\n");
-                    });
-                    break;
-                case "open":
-                    device = getDevice(apiReceiver, context, intent);
-                    if (device == null) return;
-                    ResultReturner.returnData(apiReceiver, intent, new ResultReturner.WithAncillaryFd() {
-                                @Override
-                                public void writeResult(PrintWriter out) {
-                                    if (getPermission(device, context, intent)) {
-                                        int result = open(device, context);
-                                        if (result < 0) {
-                                            out.append("Failed to open device\n");
-                                        } else {
-                                            this.setFd(result);
-                                            out.append("@"); // has to be non-empty
-                                        }
-                                    } else out.append("No permission\n");
-                                }
-                            });
+            case "list":
+                ResultReturner.returnData(apiReceiver, intent, new ResultReturner.ResultJsonWriter() {
+                    @Override
+                    public void writeJson(JsonWriter out) throws Exception {
+                        listDevices(context, out);
+                    }
+                });
+                break;
+            case "permission":
+                device = getDevice(apiReceiver, context, intent);
+                if (device == null) return;
+                ResultReturner.returnData(apiReceiver, intent, out -> {
+                    boolean result = getPermission(device, context, intent);
+                    out.append(result ? "yes\n" : "no\n");
+                });
+                break;
+            case "open":
+                device = getDevice(apiReceiver, context, intent);
+                if (device == null) return;
+                ResultReturner.returnData(apiReceiver, intent, new ResultReturner.WithAncillaryFd() {
+                    @Override
+                    public void writeResult(PrintWriter out) {
+                        if (getPermission(device, context, intent)) {
+                            int result = open(device, context);
+                            if (result < 0) {
+                                out.append("Failed to open device\n");
+                            } else {
+                                this.setFd(result);
+                                out.append("@"); // has to be non-empty
+                            }
+                        } else out.append("No permission\n");
+                    }
+                });
 
-                    break;
-                default:
-                    ResultReturner.returnData(apiReceiver, intent, out -> out.append("Invalid action\n"));
+                break;
+            default:
+                ResultReturner.returnData(apiReceiver, intent, out -> out.append("Invalid action\n"));
             }
         }
 
@@ -131,7 +131,7 @@ public class UsbAPI {
 
         final UsbManager usbManager = (UsbManager) context.getSystemService(Context.USB_SERVICE);
         PendingIntent permissionIntent = PendingIntent.getBroadcast(context, 0,
-                new Intent(ACTION_USB_PERMISSION), 0);
+                                         new Intent(ACTION_USB_PERMISSION), 0);
         IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
         context.getApplicationContext().registerReceiver(usbReceiver, filter);
         usbManager.requestPermission(device, permissionIntent);

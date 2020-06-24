@@ -111,7 +111,7 @@ public abstract class ResultReturner {
      */
     public static void returnData(Object context, final Intent intent, final ResultWriter resultWriter) {
         final PendingResult asyncResult = (context instanceof BroadcastReceiver) ? ((BroadcastReceiver) context)
-                .goAsync() : null;
+                                          .goAsync() : null;
         final Activity activity = (Activity) ((context instanceof Activity) ? context : null);
 
         final Runnable runnable = () -> {

@@ -32,18 +32,18 @@ public class ShareAPI {
             intentAction = Intent.ACTION_VIEW;
         } else {
             switch (actionExtra) {
-                case "edit":
-                    intentAction = Intent.ACTION_EDIT;
-                    break;
-                case "send":
-                    intentAction = Intent.ACTION_SEND;
-                    break;
-                case "view":
-                    intentAction = Intent.ACTION_VIEW;
-                    break;
-                default:
-                    TermuxApiLogger.error("Invalid action '" + actionExtra + "', using 'view'");
-                    break;
+            case "edit":
+                intentAction = Intent.ACTION_EDIT;
+                break;
+            case "send":
+                intentAction = Intent.ACTION_SEND;
+                break;
+            case "view":
+                intentAction = Intent.ACTION_VIEW;
+                break;
+            default:
+                TermuxApiLogger.error("Invalid action '" + actionExtra + "', using 'view'");
+                break;
             }
         }
         final String finalIntentAction = intentAction;
@@ -127,10 +127,10 @@ public class ShareAPI {
             String fileName = file.getName();
 
             if (projection == null) {
-                projection = new String[]{
-                        MediaStore.MediaColumns.DISPLAY_NAME,
-                        MediaStore.MediaColumns.SIZE,
-                        MediaStore.MediaColumns._ID
+                projection = new String[] {
+                    MediaStore.MediaColumns.DISPLAY_NAME,
+                    MediaStore.MediaColumns.SIZE,
+                    MediaStore.MediaColumns._ID
                 };
             }
 
@@ -139,17 +139,17 @@ public class ShareAPI {
                 String column = projection[i];
                 Object value;
                 switch (column) {
-                    case MediaStore.MediaColumns.DISPLAY_NAME:
-                        value = file.getName();
-                        break;
-                    case MediaStore.MediaColumns.SIZE:
-                        value = (int) file.length();
-                        break;
-                    case MediaStore.MediaColumns._ID:
-                        value = 1;
-                        break;
-                    default:
-                        value = null;
+                case MediaStore.MediaColumns.DISPLAY_NAME:
+                    value = file.getName();
+                    break;
+                case MediaStore.MediaColumns.SIZE:
+                    value = (int) file.length();
+                    break;
+                case MediaStore.MediaColumns._ID:
+                    value = 1;
+                    break;
+                default:
+                    value = null;
                 }
                 row[i] = value;
             }

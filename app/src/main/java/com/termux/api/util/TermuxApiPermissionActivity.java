@@ -39,16 +39,16 @@ public class TermuxApiPermissionActivity extends Activity {
                     @Override
                     public void writeJson(JsonWriter out) throws Exception {
                         String errorMessage = "Please grant the following permission"
-                                + (permissionsToRequest.size() > 1 ? "s" : "")
-                                + " to use this command: "
-                                + TextUtils.join(" ,", permissionsToRequest);
+                                              + (permissionsToRequest.size() > 1 ? "s" : "")
+                                              + " to use this command: "
+                                              + TextUtils.join(" ,", permissionsToRequest);
                         out.beginObject().name("error").value(errorMessage).endObject();
                     }
                 });
 
                 Intent startIntent = new Intent(context, TermuxApiPermissionActivity.class)
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        .putStringArrayListExtra(TermuxApiPermissionActivity.PERMISSIONS_EXTRA, permissionsToRequest);
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .putStringArrayListExtra(TermuxApiPermissionActivity.PERMISSIONS_EXTRA, permissionsToRequest);
                 ResultReturner.copyIntentExtras(intent, startIntent);
                 context.startActivity(startIntent);
                 return false;

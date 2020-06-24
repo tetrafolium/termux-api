@@ -57,24 +57,24 @@ public class TextToSpeechAPI {
             String streamToUseString = intent.getStringExtra("stream");
             if (streamToUseString != null) {
                 switch (streamToUseString) {
-                    case "NOTIFICATION":
-                        streamToUseInt = AudioManager.STREAM_NOTIFICATION;
-                        break;
-                    case "ALARM":
-                        streamToUseInt = AudioManager.STREAM_ALARM;
-                        break;
-                    case "MUSIC":
-                        streamToUseInt = AudioManager.STREAM_MUSIC;
-                        break;
-                    case "RING":
-                        streamToUseInt = AudioManager.STREAM_RING;
-                        break;
-                    case "SYSTEM":
-                        streamToUseInt = AudioManager.STREAM_SYSTEM;
-                        break;
-                    case "VOICE_CALL":
-                        streamToUseInt = AudioManager.STREAM_VOICE_CALL;
-                        break;
+                case "NOTIFICATION":
+                    streamToUseInt = AudioManager.STREAM_NOTIFICATION;
+                    break;
+                case "ALARM":
+                    streamToUseInt = AudioManager.STREAM_ALARM;
+                    break;
+                case "MUSIC":
+                    streamToUseInt = AudioManager.STREAM_MUSIC;
+                    break;
+                case "RING":
+                    streamToUseInt = AudioManager.STREAM_RING;
+                    break;
+                case "SYSTEM":
+                    streamToUseInt = AudioManager.STREAM_SYSTEM;
+                    break;
+                case "VOICE_CALL":
+                    streamToUseInt = AudioManager.STREAM_VOICE_CALL;
+                    break;
                 }
             }
             final int streamToUse = streamToUseInt;

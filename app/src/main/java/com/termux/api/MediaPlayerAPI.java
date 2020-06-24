@@ -56,7 +56,7 @@ public class MediaPlayerAPI {
      * All media functionality exists in this background service
      */
     public static class PlayerService extends Service implements MediaPlayer.OnErrorListener,
-            MediaPlayer.OnCompletionListener {
+        MediaPlayer.OnCompletionListener {
 
         protected static MediaPlayer mediaPlayer;
 
@@ -132,22 +132,22 @@ public class MediaPlayerAPI {
 
         protected static MediaCommandHandler getMediaCommandHandler(final String command) {
             switch (command == null ? "" : command) {
-                case "info":
-                    return infoHandler;
-                case "play":
-                    return playHandler;
-                case "pause":
-                    return pauseHandler;
-                case "resume":
-                    return resumeHandler;
-                case "stop":
-                    return stopHandler;
-                default:
-                    return (player, context, intent) -> {
-                        MediaCommandResult result = new MediaCommandResult();
-                        result.error = "Unknown command: " + command;
-                        return result;
-                    };
+            case "info":
+                return infoHandler;
+            case "play":
+                return playHandler;
+            case "pause":
+                return pauseHandler;
+            case "resume":
+                return resumeHandler;
+            case "stop":
+                return stopHandler;
+            default:
+                return (player, context, intent) -> {
+                    MediaCommandResult result = new MediaCommandResult();
+                    result.error = "Unknown command: " + command;
+                    return result;
+                };
             }
         }
 
@@ -155,7 +155,7 @@ public class MediaPlayerAPI {
          * Returns result of executing a media command to termux
          */
         protected static void postMediaCommandResult(final Context context, final Intent intent,
-                                                     final MediaCommandResult result) {
+                final MediaCommandResult result) {
 
             ResultReturner.returnData(context, intent, out -> {
                 out.append(result.message).append("\n");
